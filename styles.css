@@ -1,1 +1,146 @@
+@font-face {
+    font-family: 'ss2_0';
+    src: url('ss2_0.TTF') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+body {
+    background-color: #121212; /* dark gray */
+    margin: 0;
+    font-family: 'ss2_0', sans-serif;
+}
+
+/* Blurred background overlay */
+body::before {
+    content: "";
+    position: fixed;       /* full screen */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('background.webp');  /* your image path */
+    background-size: cover;       /* stretch to fit viewport */
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(8px);           /* adjust blur amount */
+    z-index: -1;                  /* behind all content */
+}
+
+
+
+.container {
+    display: flex;
+}
+
+.sidebar {
+    position: relative;       /* allows absolute positioning of layers */
+    width: 200px;
+    height: 100px;
+    color: 9595b9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+
+}
+
+.sidebar-content {
+    margin-top: 450px; /* move all links down/up relative to images */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.sidebar-png {
+    position: absolute;
+    top: 0;          /* adjust vertical position */
+    left: 0;
+    width: 100%;     /* matches sidebar width */
+    height: auto;
+    z-index: 1;      /* behind GIF but above content */
+}
+
+/* GIF on top of everything */
+.sidebar-gif {
+    position: absolute;
+    top: 70px;          /* adjust vertical position */
+    left: 28px;
+    width: 175px;     /* or whatever size you want */
+    height: 175px;
+    z-index: 2;      /* above everything else */
+}
+
+
+.sidebar-textholder {
+    position: absolute;
+    top: 400px;          /* adjust vertical position */
+    left: 5px;
+    width: 225px;     /* or whatever size you want */
+    height: 255px;
+    z-index: 2;      /* above everything else */
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin: 5px 0;
+    text-align: center;
+    position: relative; /* ensure content is above backgrounds */
+    z-index: 3;
+}
+
+.sidebar a:hover {
+    color: #00bcd4;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+    margin-top: 10px;
+
+}
+
+.content h1,
+.content p {
+    color: #fafffb;
+    text-align: center;
+}
+
+.sidebar-logo {
+    width: 166px;       /* shrink width */
+    height: auto;      /* keep aspect ratio */
+    display: block;
+    margin: 0 auto 15px auto; /* center + space below */
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-top: -5px;
+}
+
+/* Portfolio grid container */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    gap: 20px;                             /* space between images */
+    margin-top: 20px;
+}
+
+/* Images inside the grid */
+.portfolio-grid img {
+    width: 100%;
+    height: 100%;         /* fills the tile height */
+    object-fit: fill;    /* scales/crops to fit without stretching */
+    transition: transform 0.1s;
+}
+
+/* Optional hover effect */
+.portfolio-grid img:hover {
+    transform: scale(1.01); /* slightly zoom on hover */
+}
 
